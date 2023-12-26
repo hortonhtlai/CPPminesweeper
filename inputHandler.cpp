@@ -1,12 +1,14 @@
-#include "inputHandler.h"
+#include "InputHandler.h"
 #include <string>
 #include <iostream>
+#include "field.h"
 
 using namespace std;
 
-InputHandler::InputHandler(int fieldHeight, int fieldWidth) {
+InputHandler::InputHandler(int fieldHeight, int fieldWidth, Field *gameArea) {
     this->fieldHeight = fieldHeight;
     this->fieldWidth = fieldWidth;
+    this->gameArea = gameArea;
 };
 
 bool InputHandler::getInput() {
@@ -33,13 +35,24 @@ bool InputHandler::getInput() {
         return false;
     }
 
-    if (action == "mark") {
+    rowNum = rowNum - 1;
+    colNum = colNum - 1;
 
-    } else if (action == "unmark") {
-
-    } else if (action == "reveal") {
-
-    } else {
+    if (action == "mark") 
+    {
+        return gameArea->mark(rowNum, colNum);
+    } 
+    else if (action == "unmark") 
+    {
+        return gameArea->unmark(rowNum, colNum);
+    } 
+    else if (action == "reveal") 
+    {
+        return gameArea->reveal(rowNum, colNum);
+    }
+    else 
+    {
         cout << "action is invalid" << endl;
+        return false;
     }
 };
