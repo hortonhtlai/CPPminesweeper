@@ -4,27 +4,34 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char **argv)
 {
     int fieldWidth = 10;
     int fieldHeight = 10;
     int bombRate = 10;
+    int interval = 30;
 
     Field gameArea = Field(fieldHeight, fieldWidth, bombRate);
     InputHandler inputHandler = InputHandler(fieldHeight, fieldWidth, &gameArea);
 
     bool gameEnded = false;
 
+    clock_t start = clock();
+    clock_t lastMove = start;
+    double duration;
+
     while (!gameEnded) {
         gameArea.displayField();
-        gameEnded = inputHandler.getInput();
+        gameEnded = inputHandler.getInput(lastMove, interval);
         gameEnded = gameEnded || gameArea.gameWon();
     };
 
-    gameArea.displayField();
+    duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+
     if (gameArea.gameWon()) {
-        cout << "You Won" << endl;
+        cout << "You won" << endl;
     } else {
-        cout << "You hit a bomb" << endl;
+        cout << "You lost" << endl;
     }
+    cout << "You survived for " << duration << " s" << endl;
 };
