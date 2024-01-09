@@ -22,6 +22,7 @@ bool InputHandler::getInput(clock_t &lastMove, int interval) {
     cin >> rowNum;
     cout << "Enter a col number: ";
     cin >> colNum;
+    cout << endl;
 
     if (rowNum < 1 || rowNum > fieldHeight)
     {
