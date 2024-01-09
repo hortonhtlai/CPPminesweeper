@@ -43,7 +43,7 @@ int main(int argc, char **argv)
         string name;
         cin >> name;
         leaderboard[duration].push_back(name);
-        cout << "Leaderboard" << endl;
+        cout << endl << "Leaderboard by Survival Time" << endl;
         for (auto iter = leaderboard.rbegin(); iter != leaderboard.rend(); iter++) {
             cout << iter->first << " s" << endl;
             for (string &name : iter->second) {
