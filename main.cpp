@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include "field.h"
 #include "InputHandler.h"
 
@@ -11,6 +12,7 @@ int main(int argc, char **argv)
     int bombRate = 10;
     int interval = 30;
     bool wantToPlay = true;
+    map<double, vector<string>> leaderboard;
 
     while (wantToPlay) {
         Field gameArea = Field(fieldHeight, fieldWidth, bombRate);
@@ -37,7 +39,20 @@ int main(int argc, char **argv)
         }
         cout << "You survived for " << duration << " s" << endl;
 
-        cout << "Play again? (Y/N)" << endl;
+        cout << endl << "Name for leaderboard?" << endl;
+        string name;
+        cin >> name;
+        leaderboard[duration].push_back(name);
+        cout << "Leaderboard" << endl;
+        for (auto iter = leaderboard.rbegin(); iter != leaderboard.rend(); iter++) {
+            cout << iter->first << " s" << endl;
+            for (string &name : iter->second) {
+                cout << name << " ";
+            }
+            cout << endl;
+        }
+
+        cout << endl << "Play again? (Y/N)" << endl;
         string answer;
         cin >> answer;
         if (answer != "Y") {

@@ -24,6 +24,7 @@ Field::Field(int fieldHeight, int fieldWidth, int bombRate) {
 };
 
 void Field::displayField() {
+    cout << endl;
     for (unsigned int rowNum = 0; rowNum < gameArea.size(); rowNum++) {
         for (unsigned int colNum = 0; colNum < gameArea[0].size(); colNum++) {
             cout << gameArea[rowNum][colNum] << " ";

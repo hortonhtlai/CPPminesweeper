@@ -16,7 +16,7 @@ bool InputHandler::getInput(clock_t &lastMove, int interval) {
     int rowNum;
     int colNum;
 
-    cout << "Choose an action (mark, unmark, reveal): ";
+    cout << endl << "Choose an action (mark, unmark, reveal): ";
     cin >> action;
     cout << "Enter a row number: ";
     cin >> rowNum;
